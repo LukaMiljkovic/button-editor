@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borders</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            font-family: sans-serif;
+            background-color: #ffffff;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='0' y1='1' y2='0'%3E%3Cstop offset='0' stop-color='%230FF'/%3E%3Cstop offset='1' stop-color='%23CF6'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23F00'/%3E%3Cstop offset='1' stop-color='%23FC0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23FFF' fill-opacity='0' stroke-miterlimit='10'%3E%3Cg stroke='url(%23a)' stroke-width='2'%3E%3Cpath transform='translate(0 0)' d='M1409 581 1450.35 511 1490 581z'/%3E%3Ccircle stroke-width='4' transform='rotate(0 800 450)' cx='500' cy='100' r='40'/%3E%3Cpath transform='translate(0 0)' d='M400.86 735.5h-83.73c0-23.12 18.74-41.87 41.87-41.87S400.86 712.38 400.86 735.5z'/%3E%3C/g%3E%3Cg stroke='url(%23b)' stroke-width='4'%3E%3Cpath transform='translate(0 0)' d='M149.8 345.2 118.4 389.8 149.8 434.4 181.2 389.8z'/%3E%3Crect stroke-width='8' transform='rotate(0 1089 759)' x='1039' y='709' width='100' height='100'/%3E%3Cpath transform='rotate(0 1400 132)' d='M1426.8 132.4 1405.7 168.8 1363.7 168.8 1342.7 132.4 1363.7 96 1405.7 96z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-attachment: fixed;
+            background-size: cover;
+            font-weight: bold;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .wrapper{
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: white;
+        }
+
+        .wrapper > button{
+            position: relative;
+            top: 0;
+            width: 150px;
+            height: 55px;
+            border-width: 4px;
+            border-color: purple;
+            text-transform: uppercase;
+            background-color: rgb(64, 64, 195);
+            color: white;
+            box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+            transition: all .3s;
+            backface-visibility: hidden;
+           
+        }
+
+        hr{
+            width: 250px;
+            margin: 1rem 0;
+        }
+
+        #btn.redActive{
+            border-color: red;
+        }
+
+        .wrapper > button:hover{
+            cursor: pointer;
+            top: 2px;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+        }
+
+        form{
+            text-align: center;
+        }
+
+        .border-types{
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .style-border{
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .style-border *{
+            margin: .5rem 0;
+            display: block;
+        }
+
+        #btn.dotted{
+            border-style: dotted;
+        }
+
+        #btn.dashed{
+            border-style: dashed;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <button id="btn">Border Me</button>
+        <hr />
+        <form action="">
+            <input type="color" id="border-color" name="border-color">
+            <label for="border-color">Border Color</label>
+            <br />
+            <br />
+            <div class="border-types">
+                <div class="style-border">
+                    <input type="checkbox" id="dotted" name="dotted">
+                    <label for="dotted">Dotted Border</label>
+                </div>   
+                <div class="style-border">
+                    <input type="checkbox" id="dashed" name="dashed">
+                    <label for="dashed">Dashed Border</label>
+                </div>   
+            </div>
+            <br />
+            <br />
+            <input  type="range" id="br-slider" name="slider" min="0" max="20" value="0">
+            <label for="slider">Border Width Slider</label>
+            <br />
+            <br />
+            <input  type="range" id="br-radius-slider" name="radius-slider" min="0" max="50" value="0">
+            <label for="br-radius-slider">Border Radius Slider</label>
+        </form>
+    </div>
+    <script>
+        let btn = document.getElementById("btn");
+        let bgColor = document.getElementById("border-color");
+        let dotted = document.getElementById("dotted");
+        let dashed = document.getElementById("dashed");
+        
+        let borderSlider = document.getElementById("br-slider");
+        let borderRadiusSlider = document.getElementById("br-radius-slider");
+
+        bgColor.addEventListener('change', function () {
+            btn.style.borderColor = this.value;
+        });
+
+        dotted.addEventListener("click", ()=> {
+            btn.classList.toggle("dotted");
+        })
+
+        dashed.addEventListener("click", ()=> {
+            btn.classList.toggle("dashed");
+        })
+
+        borderSlider.addEventListener("input", (e) => {
+            btn.style.borderWidth = e.target.value + "px";
+        });
+
+        borderRadiusSlider.addEventListener("input", (e) => {
+            btn.style.borderRadius = e.target.value + "px";
+        });
+    </script>
+</body>
+</html>
